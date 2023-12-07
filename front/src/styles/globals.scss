@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+// root colors
+
+:root {
+    --color-foreground: #171616;
+    --color-background: rgb(229, 229, 229);
+    --color-primary: rgb(55, 163, 55);
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    padding: 0;
+    margin: 0;
+}
+
+
+
+h1 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 900;
+    letter-spacing: -1px;
+    font-size: 5rem;
+}
+
+h2 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 900;
+    font-size: 3rem;
+}
+
+h3 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+h6 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 900;
+    font-size: 0.875rem;
+}
+
+p {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+a {
+    font-weight: 400;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+button {
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.primary {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    padding: 1.2rem 1.7rem;
+    font-size: 1rem;
+    border-radius: 50px;
+    font-weight: 700;
+}
+
+
+
+
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+.fade-enter-done {
+    opacity: 1;
+}
+
+.fade-exit-done {
+    opacity: 0;
+}
+
+.landing-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 1rem;
+    width: 100%;
+}
