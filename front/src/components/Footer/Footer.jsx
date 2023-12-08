@@ -12,8 +12,6 @@ const Footer = () => {
                 </div>
                 <div className={styles.footer__container__links}>
                     <Link href="/">Home</Link>
-                    <Link href="/">Home</Link>
-                    <Link href="/">Home</Link>
                 </div>
                 <div className={styles.footer__container__social}>
                     {/* <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">

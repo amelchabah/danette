@@ -13,7 +13,9 @@
 :root {
     --color-foreground: #171616;
     --color-background: rgb(229, 229, 229);
-    --color-primary: rgb(55, 163, 55);
+    --color-primary: rgb(17, 52, 27);
+    --white: #fff;
+    --black: #000;
 }
 
 body {
@@ -23,8 +25,6 @@ body {
     padding: 0;
     margin: 0;
 }
-
-
 
 h1 {
     font-family: 'DM Serif Display', serif;
@@ -67,15 +67,24 @@ p {
     font-family: 'DM Sans', sans-serif;
     font-weight: 400;
     font-size: 1rem;
-    margin-bottom: 1rem;
 }
 
 a {
     font-weight: 400;
     font-size: 1rem;
-    margin-bottom: 1rem;
     color: var(--color-primary);
     text-decoration: none;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+input {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--white);
 }
 
 button {
@@ -98,6 +107,12 @@ button {
 
 
 
+section {
+    height: 100vh;
+    margin: 0 auto;
+    width: 80%;
+    transform-origin: top;
+}
 
 .fade-exit {
     opacity: 1;
@@ -131,6 +146,197 @@ button {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    gap: 1rem;
+    gap: 0.5rem;
     width: 100%;
+    padding-bottom: 15rem;
+}
+
+.game {
+    width: 90%;
+    height: 90%;
+    border-radius: 25px;
+    margin: 0 auto;
+
+    &_popup {
+        position: fixed;
+        margin: 0 auto;
+        border-radius: 50px;
+        left: 0;
+        right: 0;
+        bottom: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
+        gap: 1rem;
+        width: 90%;
+        padding: 20px 25px;
+        background-color: var(--color-background);
+        color: var(--color-foreground);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .answers {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .end {
+        display: flex;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 60%;
+        height: 100vh;
+    }
+}
+
+.login {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+
+    .login-logo {
+        height: 2rem;
+        width: auto;
+        margin-right: auto;
+    }
+
+    article {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 10px;
+
+        h5 {
+            opacity: 0.7;
+        }
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    h4 {
+        font-weight: 400;
+
+        a {
+            font-weight: 600;
+            color: var(--blue);
+        }
+    }
+
+    .signform {
+        padding: 25px;
+        border-radius: 15px;
+        min-width: 400px;
+        gap: 30px;
+
+    }
+
+    p {
+        font-size: 0.9rem;
+        color: var(--red);
+        text-align: center;
+    }
+
+    .row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        gap: 15px;
+
+        button {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+    }
+
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    fieldset {
+        border: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+
+        button {
+            margin-left: auto;
+            margin-top: 5px;
+            color: var(--blue);
+            font-weight: 600;
+        }
+    }
+
+    label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    input {
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        width: 100%;
+    }
+}
+
+.index {
+    position: relative;
+}
+
+#about,
+#how {
+    transform-origin: top;
+
+    h4,
+    h3 {
+        width: 50%;
+    }
+}
+
+#why {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    gap: 2rem;
+    text-align: center;
+}
+
+.profile_main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    height: 100vh;
+    padding: 2rem 0;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        width: 50%;
+    }
 }

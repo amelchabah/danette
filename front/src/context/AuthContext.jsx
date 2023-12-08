@@ -10,7 +10,7 @@ const AuthContextProvider = ({ children }) => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [errorMessages, setErrorMessages] = useState('');
 
-    const getUser = () => {
+    const getUser = (token) => {
         fetch('http://localhost:5001/v1/users/me', {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -18,12 +18,14 @@ const AuthContextProvider = ({ children }) => {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.id) {
+            if (data.user) {
+                console.log(data);
                 setUser(data.user);
                 setLoggedIn(true);
             } else {
                 setErrorMessages(data);
                 setLoggedIn(false);
+                setUser({});
             }
             setIsLoading(false);
         })
@@ -36,42 +38,33 @@ const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            getUser();
+            getUser(token);
         } else {
             setIsLoading(false);
         }
     }, []);
 
     const login = (email, password) => {
-        fetch('http://localhost:5001/v1/auth/login', {
+        return fetch('http://localhost:5001/v1/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams({
-              'email': email,
-              'password': password
+              email: email,
+              password: password
             })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.token) {
-                localStorage.setItem('token', data.token);
-                setLoggedIn(true);
-                getUser();
-            } else {
-                setErrorMessages(data);
-            }
         })
     }
 
     const logout = () => {
         localStorage.removeItem('token');
         setLoggedIn(false);
+        setUser({});
     }
 
     return (
-        <AuthContext.Provider value={{ isLoading, loggedIn, user, login, logout, errorMessages }}>
+        <AuthContext.Provider value={{ isLoading, loggedIn, user, login, logout, errorMessages, setLoggedIn, getUser }}>
             {children}
         </AuthContext.Provider>
     );

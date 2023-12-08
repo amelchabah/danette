@@ -1,0 +1,69 @@
+{
+    "questions": [
+      {
+        "level": 1,
+        "question": "Quelle est la principale source d'émissions de gaz à effet de serre ?",
+        "reponses": {
+          "correcte": "Industrie",
+          "incorrecte": "Agriculture"
+        }
+      },
+      {
+        "level": 2,
+        "question": "Quelle est l'impact des énergies renouvelables sur les émissions de CO2 ?",
+        "reponses": {
+          "correcte": "Elles les réduisent",
+          "incorrecte": "Elles les augmentent"
+        }
+      },
+      {
+        "level": 3,
+        "question": "Comment la déforestation contribue-t-elle au changement climatique ?",
+        "reponses": {
+          "correcte": "Elle augmente les émissions de CO2",
+          "incorrecte": "Elle les diminue"
+        }
+      },
+      {
+        "level": 4,
+        "question": "Quel est l'effet de serre ?",
+        "reponses": {
+          "correcte": "Retient la chaleur",
+          "incorrecte": "Refroidit la planète"
+        }
+      },
+      {
+        "level":5,
+        "question": "Quelles sont les conséquences du réchauffement climatique sur les océans ?",
+        "reponses": {
+          "correcte": "Montée du niveau de la mer",
+          "incorrecte": "Diminution des marées"
+        }
+      },
+      {
+        "level": 6,
+        "question": "Comment les modes de transport peuvent-ils contribuer à la réduction des émissions ?",
+        "reponses": {
+          "correcte": "En utilisant des transports écologiques",
+          "incorrecte": "En augmentant l'utilisation de voitures polluantes"
+        }
+      },
+      {
+        "level": 7,
+        "question": "Comment les actions individuelles peuvent-elles impacter le changement climatique ?",
+        "reponses": {
+          "correcte": "En adoptant des comportements éco-responsables",
+          "incorrecte": "En ignorant les problématiques environnementales"
+        }
+      },
+      {
+        "level": 8,
+        "question": "Pourquoi est-il important d'adopter des modes de vie durables ?",
+        "reponses": {
+          "correcte": "Pour réduire l'empreinte carbone",
+          "incorrecte": "Pour augmenter la consommation énergétique"
+        }
+      }
+    ]
+  }
+  
