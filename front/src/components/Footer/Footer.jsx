@@ -7,11 +7,10 @@ const Footer = () => {
     return (
         <footer className={styles.footer}>
             <div className={styles.footer__container}>
-                <div className={styles.footer__container__logo}>
-                    {/* <img src="/images/logo.png" alt="logo" /> */}
-                </div>
                 <div className={styles.footer__container__links}>
-                    <Link href="/">Home</Link>
+                <p>&copy; 2023. Tous droits réservés.</p>
+    <p>Conçu par Amel, Amézir, Driss et Noam</p>
+    <p>Animations réalisées avec gsap et Spline</p>
                 </div>
                 <div className={styles.footer__container__social}>
                     {/* <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">

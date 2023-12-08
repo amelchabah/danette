@@ -2,6 +2,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Signup = () => {
     const router = useRouter();
@@ -42,7 +43,7 @@ const Signup = () => {
             if (data.token) {
                 localStorage.setItem('token', data.token);
                 setLoggedIn(true);
-                getUser();
+                getUser(data.token);
             } else {
                 setError(data.error);
             }
@@ -54,6 +55,7 @@ const Signup = () => {
 
     return (
         <>
+        <section>
             <div className='login'>
                 <form action="" className='signform' onSubmit={(e) => onSubmit(e)}>
 
@@ -78,8 +80,15 @@ const Signup = () => {
                         error && <p className='error'>{error}</p>
                     }
                     <button type="submit" className="primary">Sign up</button>
+                    <p>Vous avez déjà un compte ? <a href="/signin">Connectez-vous.</a></p>
                 </form>
+                <article>
+                        <h2>Continuer <br /> sans se connecter</h2>
+                        <Link href='/game'>Ou continuer sans se connecter</Link>
+                    </article>
+
             </div>
+            </section>
         </>
     )
 }

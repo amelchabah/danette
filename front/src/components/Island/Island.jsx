@@ -4,12 +4,144 @@ import React, { useEffect } from 'react';
 import { useRef, useState } from 'react';
 import s from "./Island.module.scss"
 
-export const Island = () => {
+export const Island = ({ level }) => {
   const [sceneSize, setSceneSize] = useState({ width: 0, height: 0 });
   const splineRef = useRef(null);
 
+  useEffect(() => {
+    console.log(level)
+    if (level === 1) {
+      //chiffre 1
+      var event = new KeyboardEvent('keydown', {
+        key: '1',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 2) {
+      //chiffre 2
+      var event = new KeyboardEvent('keydown', {
+        key: '2',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 3) {
+      //chiffre 3
+      var event = new KeyboardEvent('keydown', {
+        key: '3',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 4) {
+      //chiffre 4
+      var event = new KeyboardEvent('keydown', {
+        key: '4',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 5) {
+      //chiffre 5
+      var event = new KeyboardEvent('keydown', {
+        key: '5',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 6) {
+      //chiffre 6
+      var event = new KeyboardEvent('keydown', {
+        key: '6',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 7) {
+      //chiffre 7
+      var event = new KeyboardEvent('keydown', {
+        key: '6',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 8) {
+      //chiffre 8
+      var event = new KeyboardEvent('keydown', {
+        key: '7',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+  }, [level])
+
   const onLoad = (spline) => {
-    console.log('Spline chargé', spline);
+    console.log("Spline Up")
+    if (level === 1) {
+      //chiffre 1
+      var event = new KeyboardEvent('keydown', {
+        key: '1',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 2) {
+      //chiffre 2
+      var event = new KeyboardEvent('keydown', {
+        key: '2',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 3) {
+      //chiffre 3
+      var event = new KeyboardEvent('keydown', {
+        key: '3',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 4) {
+      //chiffre 4
+      var event = new KeyboardEvent('keydown', {
+        key: '4',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 5) {
+      //chiffre 5
+      var event = new KeyboardEvent('keydown', {
+        key: '5',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 6) {
+      //chiffre 6
+      var event = new KeyboardEvent('keydown', {
+        key: '6',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 7) {
+      //chiffre 7
+      var event = new KeyboardEvent('keydown', {
+        key: '6',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
+    if (level === 8) {
+      //chiffre 8
+      var event = new KeyboardEvent('keydown', {
+        key: '7',
+        ctrlKey: true
+      });
+      document.dispatchEvent(event);
+    }
   }
 
   useEffect(() => {
@@ -37,7 +169,7 @@ export const Island = () => {
   return (
     <Spline
       className={s.Island}
-      scene="https://prod.spline.design/0viHa2-YJ66KwAi5/scene.splinecode"
+      scene="./assets/scenes/island.splinecode"
       onLoad={onLoad}
       width={sceneSize.width}
       height={sceneSize.height}

@@ -4,7 +4,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const mysql = require("mysql2");
 const uuid = require("uuid");
-const bcrypt = require("bcryptjs");
+const argon2 = require("argon2");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
@@ -64,7 +64,7 @@ app.get('/', (req, res) => {
 // 7	user_creation_date	timestamp			No	CURRENT_TIMESTAMP			Change Change
 
 // Définissez la route d'inscription
-app.post('/v1/auth/signup', (req, res) => {
+app.post('/v1/auth/signup', async (req, res) => {
   const { pseudo, email, password } = req.body;
   if (!pseudo || !email || !password) {
     res.status(400).json({ error: 'Missing parameters' });
@@ -76,7 +76,13 @@ app.post('/v1/auth/signup', (req, res) => {
   for (let i = 0; i < 100; i++) {
     user_secret += possible.charAt(Math.floor(Math.random() * possible.length));
   }
-  const user_password = bcrypt.hashSync(password, 10);
+  const hashOptions = {
+    timeCost: 4, // ajustez selon vos besoins
+    memoryCost: 2 ** 16, // ajustez selon vos besoins
+    parallelism: 2, // ajustez selon vos besoins
+  };
+
+  const user_password = await argon2.hash(password, hashOptions);
   const user_creation_date = new Date();
 
   const sql = `INSERT INTO users (user_uuid, user_pseudo, user_email, user_password, user_secret, user_creation_date) VALUES (?, ?, ?, ?, ?, ?)`;
@@ -92,31 +98,33 @@ app.post('/v1/auth/signup', (req, res) => {
 });
 
 app.post('/v1/auth/login', (req, res) => {
-  console.log(req.body);
   const { email, password } = req.body;
-  if (email === "" || password === "") {
-    res.status(400).json({ error: 'Missing parameters' });
-    return;
-  }
-  const sql = `SELECT * FROM users WHERE user_email = ?`;
-  db.query(sql, [email], (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Internal server error' });
-    } else {
-      if (result.length === 0) {
-        res.status(400).json({ error: 'Invalid credentials' });
+  //pour eviter les attaques par force brute
+  setTimeout(() => {
+    if (email === "" || password === "") {
+      res.status(400).json({ error: 'Missing parameters' });
+      return;
+    }
+    const sql = `SELECT * FROM users WHERE user_email = ?`;
+    db.query(sql, [email], (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal server error' });
       } else {
-        const user = result[0];
-        if (bcrypt.compareSync(password, user.user_password)) {
-          const token = jwt.sign({ user_uuid: user.user_uuid }, user.user_secret, { expiresIn: '1h' });
-          res.status(200).json({ token });
-        } else {
+        if (result.length === 0) {
           res.status(400).json({ error: 'Invalid credentials' });
+        } else {
+          const user = result[0];
+          if (argon2.verify(user.user_password, password)) {
+            const token = jwt.sign({ user_uuid: user.user_uuid }, user.user_secret, { expiresIn: '1h' });
+            res.status(200).json({ token });
+          } else {
+            res.status(400).json({ error: 'Invalid credentials' });
+          }
         }
       }
-    }
-  });
+    });
+  }, 500);
 });
 
 const verifyToken = (req, res, next) => {
@@ -128,6 +136,10 @@ const verifyToken = (req, res, next) => {
   const token = authorizationHeader.split(' ')[1];
   const sql = `SELECT * FROM users WHERE user_uuid = ?`;
   const decodedToken = jwt.decode(token);
+  if (!decodedToken) {
+    res.status(401).json({ error: 'Invalid token' });
+    return;
+  }
   db.query(sql, [decodedToken.user_uuid], (err, result) => {
     if (err) {
       console.error(err);
@@ -189,7 +201,6 @@ app.get('/v1/users/me', verifyToken, (req, res) => {
 
 app.post('/v1/game/updateprogression', verifyToken, (req, res) => {
   const { progression } = req.body;
-  console.log(progression);
   if (progression === "") {
     res.status(400).json({ error: 'Missing parameters' });
     return;
@@ -262,6 +273,10 @@ app.get('/v1/game/leaderboard', (req, res) => {
       res.status(500).json({ error: 'Internal server error' });
     } else {
       // Traitement des données côté serveur
+      if (result.length === 0) {
+        res.status(200).json({ leaderboard: [] });
+        return;
+      }
       const leaderboard = result.reduce((acc, item) => {
         const userIndex = acc.findIndex((user) => user.user_uuid === item.user_uuid);
 

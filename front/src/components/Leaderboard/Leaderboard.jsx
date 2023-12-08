@@ -5,12 +5,19 @@ const Leaderboard = () => {
     const [leaderboard, setLeaderboard] = useState([]);
 
     const getLeaderboard = async () => {
-        const response = await fetch('http://localhost:5001/v1/game/leaderboard');
-        const data = await response.json();
-        if (data.leaderboard) {
-            setLeaderboard(data.leaderboard);
+        try {
+            const response = await fetch('http://localhost:5001/v1/game/leaderboard');
+            const data = await response.json();
+            if (data.leaderboard) {
+                setLeaderboard(data.leaderboard);
+            }
+        }
+        catch (error) {
+            console.error(error);
         }
     }
+
+
 
     useEffect(() => {
         getLeaderboard();
@@ -19,29 +26,32 @@ const Leaderboard = () => {
     return (
         <div className={styles.leaderboard}>
             <h1>Leaderboard</h1>
-            {
-                leaderboard.length > 0 && leaderboard.map((user, index) => {
-                    return (
-                        <div key={index} className="leaderboard__user">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th># 👑</th>
-                                        <th>Pseudo</th>
-                                        <th>Score</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
+            <div className="leaderboard__user">
+                <table>
+                    <thead>
+                        <tr>
+                            <th># 👑</th>
+                            <th>Pseudo</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            leaderboard.length > 0 && leaderboard.slice(0, 10).map((user, index) => {
+                                return (
+                                    <tr key={index}>
                                         <td>{index + 1}</td>
                                         <td>{user.user_pseudo}</td>
                                         <td>{user.score}</td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    )
-                })
+
+                                )
+                            })
+                        } </tbody>
+                </table>
+            </div>
+            {
+                leaderboard.length === 0 && <p>Pas encore de joueur!</p>
             }
         </div>
     );

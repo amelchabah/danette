@@ -2,6 +2,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Login = () => {
     const router = useRouter();
@@ -11,7 +12,7 @@ const Login = () => {
     useEffect(() => {
         if (isLoading) return;
         if (loggedIn) {
-            router.push('/');
+            router.push('/game');
             return;
         };
     }, [isLoading, loggedIn]);
@@ -32,6 +33,7 @@ const Login = () => {
                 localStorage.setItem('token', data.token);
                 setLoggedIn(true);
                 getUser();
+                router.push('/game');
             } else {
                 setError(data.error);
             }
@@ -60,11 +62,16 @@ const Login = () => {
                     </fieldset>
                     {
                         error && <p className='error'>{error}</p>
-
                     }
                     <button type="submit" className="primary">Log in</button>
+                    <Link href='/signup'>Pas de compte ? Inscrivez-vous dès maintenant</Link>
                 </form>
+                    <article>
+                        <h2>Continuer <br /> sans se connecter</h2>
+                        <Link href='/game'>Ou continuer sans se connecter</Link>
+                    </article>
             </div>
+
         </>
     )
 }

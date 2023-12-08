@@ -10,6 +10,12 @@ const AuthContextProvider = ({ children }) => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [errorMessages, setErrorMessages] = useState('');
 
+    const logout = () => {
+        localStorage.removeItem('token');
+        setLoggedIn(false);
+        setUser({});
+    }
+
     const getUser = (token) => {
         fetch('http://localhost:5001/v1/users/me', {
             headers: {
@@ -19,19 +25,20 @@ const AuthContextProvider = ({ children }) => {
         .then(response => response.json())
         .then(data => {
             if (data.user) {
-                console.log(data);
+                // console.log(data);
                 setUser(data.user);
                 setLoggedIn(true);
             } else {
                 setErrorMessages(data);
-                setLoggedIn(false);
-                setUser({});
+                logout();
             }
             setIsLoading(false);
         })
         .catch(error => {
-            console.error(error);
+            // console.error(error);
             setErrorMessages(error);
+            setIsLoading(false);
+            logout();
         })
     }
 
@@ -55,12 +62,6 @@ const AuthContextProvider = ({ children }) => {
               password: password
             })
         })
-    }
-
-    const logout = () => {
-        localStorage.removeItem('token');
-        setLoggedIn(false);
-        setUser({});
     }
 
     return (
