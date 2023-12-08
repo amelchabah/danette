@@ -15,6 +15,8 @@ const GameView = () => {
     const [answerStatus, setAnswerStatus] = useState(null);
     const LastLevel = 9;
 
+
+
     useEffect(() => {
         const currentQuestion = questions.find((q) => q.level === level);
         setQuestion(currentQuestion);
@@ -25,6 +27,7 @@ const GameView = () => {
         const shuffledAnswers = answers.slice().sort(() => Math.random() - 0.5);
         return shuffledAnswers;
     };
+
 
     const handleAnswer = (answer) => {
         if (!showExplanation) {
@@ -50,7 +53,7 @@ const GameView = () => {
 
     useEffect(() => {
         if (user && loggedIn && !isLoading) {
-            fetch("http://localhost:5001/v1/game/getprogression", {
+            fetch("https://danettenuitinfo.alwaysdata.net/v1/game/getprogression", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -91,7 +94,7 @@ const GameView = () => {
     useEffect(() => {
         if (user && loggedIn && !isLoading) {
             if (progress.length > 0) {
-                fetch("http://localhost:5001/v1/game/updateprogression", {
+                fetch("https://danettenuitinfo.alwaysdata.net/v1/game/updateprogression", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded",
@@ -117,6 +120,8 @@ const GameView = () => {
 
     return (
         <div className="game">
+           
+            
             {LastLevel === level ? (
                 <div className="end">
                     <h1>Fin du jeu</h1>
@@ -131,17 +136,17 @@ const GameView = () => {
                     <Island level={level} />
                     {showExplanation ? (
                         <div className="game_popup explanation">
-                            <p>{question.explications}</p>
-                            <p className={answerStatus ? "correct" : "incorrect"}>
+                            <h3 className={answerStatus ? "correct" : "incorrect"}>
                                 {answerStatus ? "Correct" : "Incorrect"}
-                            </p>
+                            </h3>
+                            <h5>{question.explications}</h5>
                             <button className="primary" onClick={handleNextQuestion}>
                                 Next
                             </button>
                         </div>
                     ) : (
                         <div className="game_popup">
-                            <h2>{question.question}</h2>
+                            <h3>{question.question}</h3>
                             <div className="answers">
                                 {question.reponses &&
                                     (() => {

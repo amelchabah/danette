@@ -13,15 +13,25 @@
     a {
         color: var(--color-foreground);
     }
-    button {
+
+    .logo {
+        font-family: 'DM Serif Display', serif;
+        font-size: 1.5rem;
+        margin-left: 1rem;
+    }
+
+    .themebutton {
         position: absolute;
         left: 0;
         right: 0;
         top: 0;
         width: fit-content;
-        margin: 20px auto;
+        margin: 30px auto;
         color: var(--color-foreground);
+        background-color: transparent;
+        fill: var(--color-foreground);
     }
+
     img {
         width: 100px;
         height: 100px;

@@ -9,7 +9,7 @@ const Game = () => {
 
   useEffect(() => {
     if (user && loggedIn && !isLoading) {
-      fetch("http://localhost:5001/v1/game/getprogression", {
+      fetch("https://danettenuitinfo.alwaysdata.net/v1/game/getprogression", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

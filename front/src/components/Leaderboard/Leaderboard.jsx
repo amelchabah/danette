@@ -6,7 +6,7 @@ const Leaderboard = () => {
 
     const getLeaderboard = async () => {
         try {
-            const response = await fetch('http://localhost:5001/v1/game/leaderboard');
+            const response = await fetch('https://danettenuitinfo.alwaysdata.net/v1/game/leaderboard');
             const data = await response.json();
             if (data.leaderboard) {
                 setLeaderboard(data.leaderboard);

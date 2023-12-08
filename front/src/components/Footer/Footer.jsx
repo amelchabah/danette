@@ -11,6 +11,7 @@ const Footer = () => {
                 <p>&copy; 2023. Tous droits réservés.</p>
     <p>Conçu par Amel, Amézir, Driss et Noam</p>
     <p>Animations réalisées avec gsap et Spline</p>
+    <p><Link href="./mentions" className={styles.footer__mentions}>Mentions Légales</Link></p>
                 </div>
                 <div className={styles.footer__container__social}>
                     {/* <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">

@@ -17,7 +17,7 @@ const AuthContextProvider = ({ children }) => {
     }
 
     const getUser = (token) => {
-        fetch('http://localhost:5001/v1/users/me', {
+        fetch('https://danettenuitinfo.alwaysdata.net/v1/users/me', {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -52,7 +52,7 @@ const AuthContextProvider = ({ children }) => {
     }, []);
 
     const login = (email, password) => {
-        return fetch('http://localhost:5001/v1/auth/login', {
+        return fetch('https://danettenuitinfo.alwaysdata.net/v1/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

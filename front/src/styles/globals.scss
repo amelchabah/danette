@@ -156,6 +156,11 @@ button {
     font-size: 1rem;
     border-radius: 50px;
     font-weight: 700;
+
+    &:hover {
+        background-color: var(--color-primary) !important;
+        color: var(--white) !important;
+    }
 }
 
 
@@ -231,8 +236,13 @@ section {
         background-color: var(--color-background-opacity);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        color: var(--color-foreground);
+        color: var(--black);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        h3,h5 {
+            text-align: center;
+        }
+
     }
 
     .answers {
@@ -429,4 +439,47 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.loadinggame {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--color-background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    font-weight: bold;
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid var(--color-foreground);
+        border-top: 5px solid var(--color-green);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+
+    }
+
+}
+
+.mentionslegales {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 80%;
+    margin: 5rem auto;
 }

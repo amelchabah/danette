@@ -27,7 +27,7 @@ const Signup = () => {
             return;
         }
         try {
-            const response = await fetch('http://localhost:5001/v1/auth/signup', {
+            const response = await fetch('https://danettenuitinfo.alwaysdata.net/v1/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -80,7 +80,7 @@ const Signup = () => {
                         error && <p className='error'>{error}</p>
                     }
                     <button type="submit" className="primary">Sign up</button>
-                    <p>Vous avez déjà un compte ? <a href="/signin">Connectez-vous.</a></p>
+                    <p>Vous avez déjà un compte ? <a href="/login">Connectez-vous.</a></p>
                 </form>
                 <article>
                         <h2>Continuer <br /> sans se connecter</h2>

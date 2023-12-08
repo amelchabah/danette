@@ -26,7 +26,7 @@ const Loading = () => {
                     null
                 ) : (
                     <div className={styles.loading}>
-                        loading...
+                        <div className={styles.spinner}></div>
                     </div>
                 )
             }

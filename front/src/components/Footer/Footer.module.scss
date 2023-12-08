@@ -10,4 +10,7 @@
     &__container {
         display: flex;
     }
+    &__mentions{
+        color:var(--color-background)
+    }
 }

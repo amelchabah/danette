@@ -7,6 +7,7 @@ import s from "./Island.module.scss"
 export const Island = ({ level }) => {
   const [sceneSize, setSceneSize] = useState({ width: 0, height: 0 });
   const splineRef = useRef(null);
+  const [isLoading3D, setIsLoading3D] = useState(true);
 
   useEffect(() => {
     console.log(level)
@@ -77,6 +78,11 @@ export const Island = ({ level }) => {
   }, [level])
 
   const onLoad = (spline) => {
+
+    setTimeout(() => {
+      setIsLoading3D(false);
+    }, 500);
+
     console.log("Spline Up")
     if (level === 1) {
       //chiffre 1
@@ -167,12 +173,21 @@ export const Island = ({ level }) => {
   }, []);
 
   return (
-    <Spline
-      className={s.Island}
-      scene="./assets/scenes/island.splinecode"
-      onLoad={onLoad}
-      width={sceneSize.width}
-      height={sceneSize.height}
-    />
+    <>
+      {
+        isLoading3D && <div className="loadinggame">
+          <div className='spinner'></div>
+        </div>
+      }
+      <Spline
+        className={s.Island}
+        scene="./assets/scenes/island.splinecode"
+        onLoad={onLoad}
+        width={sceneSize.width}
+        height={sceneSize.height}
+      />
+    </>
+
   );
+
 }
