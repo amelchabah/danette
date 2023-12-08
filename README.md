@@ -1,5 +1,7 @@
 Project by Amel CHABAH, Driss BENADJAL, Noam SEBAHOUN & Amézir MESSAOUD.
 
+Danette, our project, stands out for creating a mini-game in the form of a 3D quiz, accompanied by a three-dimensional environment to provide an immersive experience for users. The goal is to create an engaging atmosphere while educating players on various subjects.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
